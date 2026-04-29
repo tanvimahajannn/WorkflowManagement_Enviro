@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enviro.H Workflow Engine</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar glass-panel">
+            <div class="logo">
+                <div class="logo-icon">
+                    <i class="fa-solid fa-layer-group"></i>
+                </div>
+                <span>Enviro.H Flow</span>
+            </div>
+            
+            <div class="nav-section">
+                <span class="nav-label">Main Menu</span>
+                <nav class="nav-menu">
+                    <a href="#" class="nav-item active" data-target="admin-view">
+                        <i class="fa-solid fa-diagram-project"></i>
+                        <span>Workflow Builder</span>
+                    </a>
+                    <a href="#" class="nav-item" data-target="user-view">
+                        <i class="fa-solid fa-inbox"></i>
+                        <span>My Approvals</span>
+                        <span class="badge">3</span>
+                    </a>
+                </nav>
+            </div>
+
+            <div class="nav-section">
+                <span class="nav-label">Settings</span>
+                <nav class="nav-menu">
+                    <a href="#" class="nav-item">
+                        <i class="fa-solid fa-users-gear"></i>
+                        <span>Role Mappings</span>
+                    </a>
+                    <a href="#" class="nav-item">
+                        <i class="fa-solid fa-clock-rotate-left"></i>
+                        <span>Audit Logs</span>
+                    </a>
+                </nav>
+            </div>
+
+            <div class="user-profile">
+                <img src="https://i.pravatar.cc/150?img=47" alt="Admin" class="avatar">
+                <div class="user-info">
+                    <span class="user-name">Sarah Jenkins</span>
+                    <span class="user-role">System Admin</span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- ADMIN VIEW: WORKFLOW BUILDER -->
+            <section id="admin-view" class="view-section active">
+                <header class="view-header">
+                    <div class="header-title">
+                        <h1>Workflow Configuration</h1>
+                        <p>Design dynamic routing for HR modules</p>
+                    </div>
+                    <div class="header-actions">
+                        <div class="custom-select">
+                            <select id="module-select">
+                                <option value="claims">Claims & Reimbursements</option>
+                                <option value="leave">Leave Management</option>
+                                <option value="exit">Exit Workflows</option>
+                            </select>
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </div>
+                        <button class="btn btn-secondary"><i class="fa-solid fa-code"></i> JSON</button>
+                        <button class="btn btn-primary glow-effect"><i class="fa-solid fa-save"></i> Save Workflow</button>
+                    </div>
+                </header>
+
+                <div class="builder-container">
+                    <!-- Left: Palette -->
+                    <div class="builder-palette glass-panel">
+                        <div class="panel-header">
+                            <h3>Nodes</h3>
+                        </div>
+                        <div class="palette-items">
+                            <div class="node-item draggable">
+                                <div class="icon-wrap bg-blue"><i class="fa-solid fa-user-check"></i></div>
+                                <span>Approval Step</span>
+                            </div>
+                            <div class="node-item draggable">
+                                <div class="icon-wrap bg-purple"><i class="fa-solid fa-code-branch"></i></div>
+                                <span>Condition Split</span>
+                            </div>
+                            <div class="node-item draggable">
+                                <div class="icon-wrap bg-orange"><i class="fa-solid fa-envelope"></i></div>
+                                <span>Notification</span>
+                            </div>
+                            <div class="node-item draggable">
+                                <div class="icon-wrap bg-green"><i class="fa-solid fa-flag-checkered"></i></div>
+                                <span>End Workflow</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Center: Canvas -->
+                    <div class="builder-canvas">
+                        <div class="canvas-grid"></div>
+                        
+                        <!-- Flowchart Nodes -->
+                        <div class="flowchart">
+                            <div class="flow-node start-node">
+                                <div class="node-icon"><i class="fa-solid fa-play"></i></div>
+                                <span>Request Submitted</span>
+                            </div>
+                            
+                            <div class="flow-connector"></div>
+                            
+                            <div class="flow-node action-node selected">
+                                <div class="node-header">
+                                    <div class="icon-wrap bg-blue"><i class="fa-solid fa-user-check"></i></div>
+                                    <div class="node-title">
+                                        <h4>Reporting Manager</h4>
+                                        <span>Sequential • 48h SLA</span>
+                                    </div>
+                                    <div class="node-actions"><i class="fa-solid fa-ellipsis"></i></div>
+                                </div>
+                            </div>
+                            
+                            <div class="flow-connector"></div>
+                            
+                            <div class="flow-node condition-node">
+                                <div class="node-header">
+                                    <div class="icon-wrap bg-purple"><i class="fa-solid fa-code-branch"></i></div>
+                                    <div class="node-title">
+                                        <h4>Amount > $5,000</h4>
+                                        <span>Condition</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="flow-branches">
+                                <div class="branch">
+                                    <div class="branch-label">True</div>
+                                    <div class="flow-connector"></div>
+                                    <div class="flow-node action-node">
+                                        <div class="node-header">
+                                            <div class="icon-wrap bg-blue"><i class="fa-solid fa-users-gear"></i></div>
+                                            <div class="node-title">
+                                                <h4>Finance Dept Head</h4>
+                                                <span>Specific Role • 24h SLA</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="flow-connector"></div>
+                                    <div class="flow-node end-node">
+                                        <div class="node-icon"><i class="fa-solid fa-flag-checkered"></i></div>
+                                        <span>Approved</span>
+                                    </div>
+                                </div>
+                                <div class="branch">
+                                    <div class="branch-label">False</div>
+                                    <div class="flow-connector"></div>
+                                    <div class="flow-node end-node">
+                                        <div class="node-icon"><i class="fa-solid fa-flag-checkered"></i></div>
+                                        <span>Approved</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right: Properties -->
+                    <div class="builder-properties glass-panel">
+                        <div class="panel-header">
+                            <h3>Step Properties</h3>
+                            <button class="icon-btn"><i class="fa-solid fa-xmark"></i></button>
+                        </div>
+                        <div class="props-body">
+                            <div class="form-group">
+                                <label>Step Name</label>
+                                <input type="text" value="Reporting Manager" class="form-input">
+                            </div>
+                            <div class="form-group">
+                                <label>Role Type</label>
+                                <div class="custom-select full-width">
+                                    <select class="form-input">
+                                        <option selected>Reporting Manager</option>
+                                        <option>Department Head</option>
+                                        <option>HR Partner</option>
+                                        <option>Specific Role</option>
+                                    </select>
+                                    <i class="fa-solid fa-chevron-down"></i>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Execution Type</label>
+                                <div class="toggle-group">
+                                    <button class="toggle-btn active">Sequential</button>
+                                    <button class="toggle-btn">Parallel</button>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>SLA Timeout (Hours)</label>
+                                <input type="number" value="48" class="form-input">
+                            </div>
+                            <div class="form-group">
+                                <label>On Rejection</label>
+                                <div class="custom-select full-width">
+                                    <select class="form-input">
+                                        <option>End Workflow</option>
+                                        <option>Return to Previous Step</option>
+                                        <option selected>Restart Workflow</option>
+                                    </select>
+                                    <i class="fa-solid fa-chevron-down"></i>
+                                </div>
+                            </div>
+                            
+                            <div class="divider"></div>
+                            
+                            <div class="form-group">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" checked>
+                                    <span class="custom-checkbox"></span>
+                                    Allow 'Send Back' action
+                                </label>
+                            </div>
+                            
+                            <button class="btn btn-danger-outline full-width mt-4">
+                                <i class="fa-solid fa-trash"></i> Delete Step
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- USER VIEW: MY APPROVALS -->
+            <section id="user-view" class="view-section">
+                <header class="view-header">
+                    <div class="header-title">
+                        <h1>My Approvals</h1>
+                        <p>Pending requests requiring your attention</p>
+                    </div>
+                    <div class="header-actions">
+                        <button class="btn btn-secondary"><i class="fa-solid fa-filter"></i> Filter</button>
+                        <button class="btn btn-secondary"><i class="fa-solid fa-check-double"></i> Approve All</button>
+                    </div>
+                </header>
+
+                <div class="inbox-container">
+                    <!-- Left: Task List -->
+                    <div class="inbox-list glass-panel">
+                        <div class="search-box">
+                            <i class="fa-solid fa-search"></i>
+                            <input type="text" placeholder="Search by name, ID...">
+                        </div>
+                        
+                        <div class="task-filters">
+                            <span class="filter-chip active">All (3)</span>
+                            <span class="filter-chip">Claims (2)</span>
+                            <span class="filter-chip">Leave (1)</span>
+                        </div>
+
+                        <div class="task-items">
+                            <!-- Task 1 -->
+                            <div class="task-item active" onclick="selectTask(this, 'task1')">
+                                <div class="task-icon claims"><i class="fa-solid fa-receipt"></i></div>
+                                <div class="task-content">
+                                    <div class="task-title">
+                                        <h4>Travel Expense - NYC Client Visit</h4>
+                                        <span class="time">2h ago</span>
+                                    </div>
+                                    <div class="task-subtitle">
+                                        <span>John Doe • Engineering</span>
+                                        <span class="amount">$1,250.00</span>
+                                    </div>
+                                    <div class="task-tags">
+                                        <span class="tag tag-warning">SLA Warning</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Task 2 -->
+                            <div class="task-item" onclick="selectTask(this, 'task2')">
+                                <div class="task-icon leave"><i class="fa-solid fa-plane-departure"></i></div>
+                                <div class="task-content">
+                                    <div class="task-title">
+                                        <h4>Annual Leave Request</h4>
+                                        <span class="time">1d ago</span>
+                                    </div>
+                                    <div class="task-subtitle">
+                                        <span>Alice Smith • Marketing</span>
+                                        <span>5 Days</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Task 3 -->
+                            <div class="task-item" onclick="selectTask(this, 'task3')">
+                                <div class="task-icon claims"><i class="fa-solid fa-laptop"></i></div>
+                                <div class="task-content">
+                                    <div class="task-title">
+                                        <h4>Equipment Reimbursement</h4>
+                                        <span class="time">2d ago</span>
+                                    </div>
+                                    <div class="task-subtitle">
+                                        <span>Mike Johnson • Design</span>
+                                        <span class="amount">$450.00</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right: Task Details -->
+                    <div class="task-details glass-panel" id="task-detail-pane">
+                        <div class="details-header">
+                            <div class="request-info">
+                                <span class="req-id">REQ-2026-8842</span>
+                                <h2>Travel Expense - NYC Client Visit</h2>
+                                <div class="submitter">
+                                    <img src="https://i.pravatar.cc/150?img=33" alt="John Doe">
+                                    <span><strong>John Doe</strong> submitted on Oct 24, 2026</span>
+                                </div>
+                            </div>
+                            <div class="amount-display">
+                                $1,250.00
+                            </div>
+                        </div>
+                        
+                        <div class="details-body">
+                            <div class="data-grid">
+                                <div class="data-group">
+                                    <label>Category</label>
+                                    <p>Travel & Accommodation</p>
+                                </div>
+                                <div class="data-group">
+                                    <label>Project/Client</label>
+                                    <p>Acme Corp Redesign</p>
+                                </div>
+                                <div class="data-group">
+                                    <label>Date of Expense</label>
+                                    <p>Oct 20, 2026 - Oct 23, 2026</p>
+                                </div>
+                                <div class="data-group full-width">
+                                    <label>Description</label>
+                                    <p>Flights, hotel, and meals for the onsite workshop with the Acme Corp team in New York City.</p>
+                                </div>
+                                <div class="data-group full-width">
+                                    <label>Attachments</label>
+                                    <div class="attachments">
+                                        <div class="attachment-chip">
+                                            <i class="fa-solid fa-file-pdf"></i>
+                                            <span>flight_receipt.pdf</span>
+                                        </div>
+                                        <div class="attachment-chip">
+                                            <i class="fa-solid fa-file-image"></i>
+                                            <span>hotel_invoice.png</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="workflow-track">
+                                <h3>Approval Progress</h3>
+                                <div class="progress-steps">
+                                    <div class="p-step completed">
+                                        <div class="p-icon"><i class="fa-solid fa-check"></i></div>
+                                        <div class="p-info">
+                                            <h4>Submitted</h4>
+                                            <span>John Doe • Oct 24, 10:00 AM</span>
+                                        </div>
+                                    </div>
+                                    <div class="p-line completed"></div>
+                                    <div class="p-step current">
+                                        <div class="p-icon"><i class="fa-solid fa-spinner fa-spin"></i></div>
+                                        <div class="p-info">
+                                            <h4>Reporting Manager</h4>
+                                            <span>Sarah Jenkins (You) • Pending</span>
+                                        </div>
+                                    </div>
+                                    <div class="p-line"></div>
+                                    <div class="p-step pending">
+                                        <div class="p-icon"><i class="fa-solid fa-lock"></i></div>
+                                        <div class="p-info">
+                                            <h4>Finance Approval</h4>
+                                            <span>Required due to amount > $1,000</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="details-footer">
+                            <textarea placeholder="Add comments here (required for rejection/send back)..." class="comment-box"></textarea>
+                            <div class="action-buttons">
+                                <button class="btn btn-secondary"><i class="fa-solid fa-share"></i> Delegate</button>
+                                <div class="right-actions">
+                                    <button class="btn btn-warning"><i class="fa-solid fa-rotate-left"></i> Send Back</button>
+                                    <button class="btn btn-danger"><i class="fa-solid fa-xmark"></i> Reject</button>
+                                    <button class="btn btn-success glow-effect-success"><i class="fa-solid fa-check"></i> Approve</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
